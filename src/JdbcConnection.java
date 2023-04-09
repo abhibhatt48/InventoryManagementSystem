@@ -31,6 +31,7 @@ public class JdbcConnection {
         final String username = "abhishekb";
         final String password = "B00933993";
         final List<String> VALID_EXTENSIONS  = Arrays.asList(".txt", ".csv", ".xml", ".doc", ".pdf");
+        String dateFormatRegex = "\\d{4}-\\d{2}-\\d{2}";
         
         // Do the actual database work now
         Connection connect = null;
@@ -41,13 +42,30 @@ public class JdbcConnection {
         // Take user input for start date, end date and file name.
         System.out.println("Enter start date (YYYY-MM-DD):");
         String startDate = scanner.nextLine();
+        
+        // validating the start date format for a date 
+        if (!startDate.matches(dateFormatRegex)) {
+            System.out.println("Invalid start date format. Please use YYYY-MM-DD format.");
+            return; 
+        }
+        
         System.out.println("Enter end date (YYYY-MM-DD):");
         String endDate = scanner.nextLine();
+        
+        // validating the end date format for a date 
+        if (!endDate.matches(dateFormatRegex)) {
+            System.out.println("Invalid start date format. Please use YYYY-MM-DD format.");
+            return; 
+        }
+        
         System.out.println("Enter a file name you want to generate output in: ");
         String fileName = scanner.nextLine();
         // if file name contain any extension validation
         for (String ext : VALID_EXTENSIONS )
-        if (fileName.endsWith(ext) ) {
+        	if(fileName.isEmpty()) {
+        		System.out.println("Please enter file name.");   
+        	}
+        	else if (fileName.endsWith(ext) ) {
         	System.out.println("Please don't specify file extensions.");        	
         }
 
