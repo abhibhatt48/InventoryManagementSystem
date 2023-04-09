@@ -28,6 +28,4 @@ private Connection connection;
             		+ "");
 	    	return resultSet2;
 	    }
-	
-
 }
